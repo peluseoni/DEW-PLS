@@ -195,3 +195,87 @@ small {
   font-weight: bold;
   border-radius: 20px;
 }
+/* =====================================================
+   EXERCÍCIO 3 — Media Query e CSS Grid
+   Regras acrescentadas sem remover os estilos originais
+   ===================================================== */
+
+/* all 2: estilos do rodapé */
+.footer {
+  margin-top: 30px;
+  padding: 22px 30px;
+  background-color: #200624;
+  color: #ffffff;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ct-tvs 1, 2 e 3: substituição do Flexbox por Grid */
+.page-category-tvs .products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-auto-flow: row;
+  row-gap: 10px;
+  column-gap: 20px;
+  justify-items: center;
+  align-items: stretch;
+  align-content: center;
+  overflow: hidden;
+}
+
+/* ct-tvs 4: áreas do Grid */
+.page-category-tvs .products-list {
+  grid-template-areas: "produto1 produto2 produto3";
+}
+
+.page-category-tvs .product:nth-child(1) {
+  grid-area: produto1;
+}
+
+.page-category-tvs .product:nth-child(2) {
+  grid-area: produto2;
+}
+
+/* ct-tvs 5 e 6: tablet — duas colunas até 1024px */
+@media screen and (max-width: 1024px) {
+  .page-category-tvs .products-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas: "produto1 produto2";
+  }
+}
+
+/* ct-tvs 5 e 6: celular — uma coluna até 768px */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 14px 18px;
+    justify-content: center;
+  }
+
+  .header .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-category-tvs .products-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "produto1"
+      "produto2";
+    row-gap: 10px;
+    column-gap: 0;
+  }
+}
+
+/* all 1: ocultar cabeçalho e rodapé na impressão */
+@media print {
+  .header,
+  .footer {
+    display: none;
+  }
+}
